@@ -1,107 +1,42 @@
 import React, { Component } from 'react';
-import Person from './Person/Person';
 import './App.css';
+import UserInput from './UserInput/UserInput';
+import UserOutput from './UserOutput/UserOutput';
 
 class App extends Component {
-
   state = {
-    persons: [
-      {name: 'Marko', age: 23},
-      {name: 'Milos', age: 25},
-      {name: 'Jovana', age: 31}
-    ],
-    otherState: 'Some other value'
+    username: 'Super Marko'
   }
 
-  switchNameHandler = (newName) => {
-    // console.log(e)
+  inputChangeHandler = (e) => {
     this.setState({
-      persons: [
-        {name: newName, age: 23},
-        {name: 'Milos', age: 25},
-        {name: 'Jovana', age: 31}
-      ]
+      username: e.target.value
     })
   }
 
   render() { 
     return (
       <div className="App">
-        <h1>Hi, I'm a React App</h1>
-        <p>This is really working!</p>
-        <button onClick={this.switchNameHandler.bind(this, 'Maksimilijan')}>Switch Name</button>
-        <button onClick={() => this.switchNameHandler('Metallica')}>Switch Name 2</button>
+        <ol>
+          <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nulla, ut odit.</li>
+          <li>Consequatur itaque necessitatibus ducimus dolor expedita nisi numquam neque repellat iste.</li>
+          <li>Iure, fugit fugiat ipsum debitis dolorum quo quas nobis sequi amet!</li>
+          <li>Laudantium, obcaecati corporis. Consequuntur deleniti officiis necessitatibus accusantium exercitationem. Adipisci, ipsam.</li>
+          <li>In minima recusandae nisi, labore consequatur voluptas quisquam cumque nulla iusto!</li>
+          <li>At ipsum placeat eveniet, vero voluptatum voluptates adipisci laudantium a consequatur?</li>
+          <li>Dicta enim rerum similique! Quas odio sequi, quaerat nobis cupiditate animi.</li>
+          <li>Odit enim error laborum sequi iure asperiores obcaecati totam atque. Explicabo!</li>
+          <li>Alias esse blanditiis qui officia beatae, corrupti eaque eius ipsa modi!</li>
+          <li>Officia animi porro itaque sapiente sint, quos reiciendis in dicta laboriosam.</li>
+        </ol>
 
-        <Person 
-          click={this.switchNameHandler.bind(this,'Mirjana')} 
-          name={this.state.persons[0].name} 
-          age={this.state.persons[0].age} 
-        />
-        <Person 
-          click={this.switchNameHandler.bind(this,'Miljana')} 
-          name={this.state.persons[1].name} 
-          age={this.state.persons[1].age}
-        >
-          <i>My hobbies; Racing</i>
-        </Person>
-        <Person 
-          name={this.state.persons[2].name} 
-          age={this.state.persons[2].age} 
-        />
+        <UserInput currentValue={this.state.username} inputChangeHandler={this.inputChangeHandler} />
+        <UserOutput userName={this.state.username} />
+        <UserOutput userName={this.state.username} />
+        <UserOutput userName="Marko" />
       </div>
     );
   }
 }
 
 export default App;
-
-// export default app;
-// const app = (props) => {
-
-//   const [personState, setPersonsState] = useState({
-//     persons: [
-//       {name: 'Marko', age: 23},
-//       {name: 'Milos', age: 25},
-//       {name: 'Jovana', age: 31}
-//     ]
-//   });
-
-//   const [otherState, setOtherState] = useState('some other value')
-  
-
-    
-//   const switchNameHandler = (e) => {
-//     console.log(e)
-//     setPersonsState({
-//       persons: [
-//         {name: 'John', age: 23},
-//         {name: 'Milos', age: 25},
-//         {name: 'Jovana', age: 31}
-//       ]
-//     })
-//   }
-
-// switchNameHandler = (e) => {
-//   console.log(e)
-//   setPersonsState({
-//     persons: [
-//       {name: 'John', age: 23},
-//       {name: 'Milos', age: 25},
-//       {name: 'Jovana', age: 31}
-//     ]
-//   })
-// }
-
-//   // render() {
-//     return (
-//       <div className="App">
-//         <h1>Hi, I'm a React App</h1>
-//         <p>This is really working!</p>
-//         <button onClick={switchNameHandler}>Switch Name</button>
-//         <Person name={personState.persons[0].name} age={personState.persons[0].age} />
-//         <Person name={personState.persons[1].name} age={personState.persons[1].age}><i>My hobbies; Racing</i></Person>
-//         <Person name={personState.persons[2].name} age={personState.persons[2].age} />
-//       </div>
-//     );
-//   // }
-// }
