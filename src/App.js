@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-import Ingredients from './components/Ingredients/Ingredients';
+import Todo from './components/Todo';
 
-const App = props => {
-  return <Ingredients />;
-};
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <Todo />
+      </div>
+    );
+  }
+}
 
 export default App;
