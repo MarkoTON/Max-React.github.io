@@ -42,7 +42,8 @@ class App extends Component {
         <button onClick={this.switchNameHandler.bind(this, 'Maksimilijan')}>Switch Name</button>
         <button onClick={() => this.switchNameHandler('Metallica')}>Switch Name 2</button>
 
-        <Person 
+        {/* Bacace gresku jer nije dinamicki izmenljivo. Nije bajdovano. */}
+        {/* <Person 
           click={this.switchNameHandler.bind(this,'Mirjana')} 
           name={this.state.persons[0].name} 
           age={this.state.persons[0].age} 
@@ -53,7 +54,8 @@ class App extends Component {
           age={this.state.persons[1].age}
         >
           <i>My hobbies; Racing</i>
-        </Person>
+        </Person> */}
+
         <Person 
           name={this.state.persons[2].name} 
           age={this.state.persons[2].age} 
