@@ -2,6 +2,9 @@ import React from 'react';
 
 const person = (props) => {
   const {name,age,click,nameChangedhandler} = props;
+
+  console.log(click);
+
   return (
     <div>
       <p onClick={click}>I'm a {name} and I am {age} years old!</p>

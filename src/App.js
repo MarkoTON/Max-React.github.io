@@ -25,14 +25,28 @@ class App extends Component {
   }
 
   nameChangedhandler = (e) => {
+    console.log(e);
+    console.log(e.target);
+    console.log(e.target.value);
+    console.log(this.state.persons);
     this.setState({
       persons: [
         {name: 'newName', age: 23},
         {name: 'Milos', age: 25},
         {name: e.target.value, age: 31}
       ]
+      // ...persons,
+      // persons:[
+      //   ...
+      // ]
+      // name:e.target.value
     })
   }
+
+  
+  // click = () => {
+  //   console.log('ahbdlajsb');
+  // }
 
   render() { 
     return (
@@ -43,18 +57,20 @@ class App extends Component {
         <button onClick={() => this.switchNameHandler('Metallica')}>Switch Name 2</button>
 
         {/* Bacace gresku jer nije dinamicki izmenljivo. Nije bajdovano. */}
-        {/* <Person 
-          click={this.switchNameHandler.bind(this,'Mirjana')} 
-          name={this.state.persons[0].name} 
-          age={this.state.persons[0].age} 
-        />
-        <Person 
-          click={this.switchNameHandler.bind(this,'Miljana')} 
-          name={this.state.persons[1].name} 
-          age={this.state.persons[1].age}
-        >
-          <i>My hobbies; Racing</i>
-        </Person> */}
+        {
+          /* <Person 
+            click={this.switchNameHandler.bind(this,'Mirjana')} 
+            name={this.state.persons[0].name} 
+            age={this.state.persons[0].age} 
+          />
+          <Person 
+            click={this.switchNameHandler.bind(this,'Miljana')} 
+            name={this.state.persons[1].name} 
+            age={this.state.persons[1].age}
+          >
+            <i>My hobbies; Racing</i>
+          </Person> */
+        }
 
         <Person 
           name={this.state.persons[2].name} 
