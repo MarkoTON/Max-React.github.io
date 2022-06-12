@@ -41,6 +41,8 @@ class App extends Component {
       // ]
       // name:e.target.value
     })
+
+    console.log(this.state);
   }
 
   
