@@ -65,6 +65,7 @@ class App extends Component {
       persons = (
         <div>
           {this.state.persons.map(person => {
+            console.log(person);
             return (
               <Person 
                 click={this.switchNameHandler.bind(this,'Mirjana')} 
