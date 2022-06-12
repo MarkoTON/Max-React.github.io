@@ -14,7 +14,7 @@ class App extends Component {
   }
 
   switchNameHandler = (newName) => {
-    // console.log(e)
+    console.log(newName)
     this.setState({
       persons: [
         {name: newName, age: 23},
@@ -58,6 +58,8 @@ class App extends Component {
         <button onClick={this.switchNameHandler.bind(this, 'Maksimilijan')}>Switch Name</button>
         <button onClick={() => this.switchNameHandler('Metallica')}>Switch Name 2</button>
 
+        <p>{this.state.persons[0].name}</p>
+
         {/* Bacace gresku jer nije dinamicki izmenljivo. Nije bajdovano. */}
         {
           /* <Person 
@@ -71,12 +73,13 @@ class App extends Component {
             age={this.state.persons[1].age}
           >
             <i>My hobbies; Racing</i>
-          </Person> */
+          // </Person> */
         }
 
         <Person 
           name={this.state.persons[2].name} 
           age={this.state.persons[2].age} 
+          switchNameHandler={this.switchNameHandler}
           nameChangedhandler={this.nameChangedhandler}
         >
           Test text!
