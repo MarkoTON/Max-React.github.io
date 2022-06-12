@@ -89,6 +89,29 @@ class App extends Component {
           </div>
           : null
         }
+
+        <hr />
+        {/* Show/Hide in one line with && */}
+        { this.state.showPersons &&
+          <div>
+            <Person 
+              click={this.switchNameHandler.bind(this,'Mirjana')} 
+              name={this.state.persons[0].name} 
+              age={this.state.persons[0].age} 
+            />
+            <Person 
+              click={this.switchNameHandler.bind(this,'Miljana')} 
+              name={this.state.persons[1].name} 
+              age={this.state.persons[1].age}
+            >
+              <i>My hobbies; Racing</i>
+            </Person>
+            <Person 
+              name={this.state.persons[2].name} 
+              age={this.state.persons[2].age} 
+            />
+          </div>
+        }
       </div>
     );
   }
