@@ -76,7 +76,9 @@ class App extends Component {
           name={this.state.persons[2].name} 
           age={this.state.persons[2].age} 
           nameChangedhandler={this.nameChangedhandler}
-        />
+        >
+          Test text!
+        </Person>
       </div>
     );
   }
