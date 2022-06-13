@@ -16,8 +16,11 @@ class App extends Component {
 
   deleteChartHandler = (index) => {
     const text = this.state.userInput.split('');
+    console.log(text); // Dobijas array of strings
     text.splice(index,1);
     const updateText = text.join('');
+    // Posto ga je ponovo spojio i setovao, ponovo se sve ucitava
+    // I sada su druga slova na drugom index-u
     this.setState({userInput:updateText})
   }
 
