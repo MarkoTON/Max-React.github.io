@@ -107,6 +107,7 @@ class App extends Component {
     }
 
     let classes = [];
+    // let classes = ['red','bold'].join(' ')
     if(this.state.persons.length <= 2){
       classes.push('red');
     }
@@ -132,4 +133,5 @@ class App extends Component {
   }
 }
 
+// export default App;
 export default Radium(App);
