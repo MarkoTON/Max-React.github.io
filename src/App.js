@@ -51,7 +51,13 @@ class App extends Component {
 
   addNewPerson = () => {
     let persons = [...this.state.persons]
-    let newID = persons[persons.length - 1].id
+    let newID;
+    if(persons.length == 0){
+      newID = '1'
+    } else {
+      newID = persons[persons.length - 1].id
+    }
+
     console.log(newID);
     persons.push({id: ++newID,name:'Generick name', age: 99})
     this.setState({persons:persons})
