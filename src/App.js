@@ -49,6 +49,14 @@ class App extends Component {
     // })
   }
 
+  addNewPerson = () => {
+    let persons = [...this.state.persons]
+    let newID = persons[persons.length - 1].id
+    console.log(newID);
+    persons.push({id: ++newID,name:'Generick name', age: 99})
+    this.setState({persons:persons})
+  }
+
   deletePersonHandler = (personIndex) => {
     // const persons = this.state.persons.slice();
     const persons = [...this.state.persons];
@@ -106,7 +114,12 @@ class App extends Component {
       }
     }
 
+    // Svaki put kada dodam novu osobu on ponovo proverava sve i zato je ovo dinamicno
+    console.log('-------------')
     let classes = [];
+    console.log(classes);
+    console.log('-------------')
+
     // let classes = ['red','bold'].join(' ')
     if(this.state.persons.length <= 2){
       classes.push('red');
@@ -115,12 +128,17 @@ class App extends Component {
     if(this.state.persons.length <= 1) {
       classes.push('bold');
     }
+    console.log(classes);
+
 
 
     return (
       <StyleRoot>
         <div className="App">
           <h1>Hi, I'm a React App</h1>
+          <hr />
+          <button onClick={this.addNewPerson}>Add new generic person</button>
+          <hr />
           <p className={classes.join(' ')}>This is really working!</p>
           {/* <button style={style} onClick={this.switchNameHandler.bind(this, 'Maksimilijan')}>Switch Name</button>
           <button style={style} onClick={() => this.switchNameHandler('Metallica')}>Switch Name 2</button> */}
