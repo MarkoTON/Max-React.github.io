@@ -1,63 +1,53 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 
 import classes from './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
-import Aux from '../hoc/Aux';
-import withClass from '../hoc/WithClass';
+import WithClass from '../hoc/WithClass';
 
-class App extends PureComponent {
-  constructor( props ) {
-    super( props );
-    console.log( '[App.js] Inside Constructor', props );
-    this.state = {
-      persons: [
-        { id: 'asfa1', name: 'Max', age: 28 },
-        { id: 'vasdf1', name: 'Manu', age: 29 },
-        { id: 'asdf11', name: 'Stephanie', age: 26 }
-      ],
-      otherState: 'some other value',
-      showPersons: false,
-      toggleClicked: 0
-    };
+class App extends Component {
+  constructor(props) {
+    super(props);
+    console.log('[App.js] constructor');
   }
 
-  componentWillMount () {
-    console.log( '[App.js] Inside componentWillMount()' );
+  state = {
+    persons: [
+      { id: 'asfa1', name: 'Max', age: 28 },
+      { id: 'vasdf1', name: 'Manu', age: 29 },
+      { id: 'asdf11', name: 'Stephanie', age: 26 }
+    ],
+    otherState: 'some other value',
+    showPersons: false,
+    showCockpit: true
+  };
+
+  static getDerivedStateFromProps(props, state) {
+    console.log('[App.js] getDerivedStateFromProps', props);
+    return state;
   }
 
-  componentDidMount () {
-    console.log( '[App.js] Inside componentDidMount()' );
-  }
-
-  // shouldComponentUpdate ( nextProps, nextState ) {
-  //   console.log( '[UPDATE App.js] Inside shouldComponentUpdate', nextProps, nextState );
-  //   return nextState.persons !== this.state.persons ||
-  //     nextState.showPersons !== this.state.showPersons;
+  // componentWillMount() {
+  //   console.log('[App.js] componentWillMount');
   // }
 
-  componentWillUpdate ( nextProps, nextState ) {
-    console.log( '[UPDATE App.js] Inside componentWillUpdate', nextProps, nextState );
+  componentDidMount() {
+    console.log('[App.js] componentDidMount');
   }
 
-  componentDidUpdate () {
-    console.log( '[UPDATE App.js] Inside componentDidUpdate' );
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('[App.js] shouldComponentUpdate');
+    return true;
   }
 
-  // state = {
-  //   persons: [
-  //     { id: 'asfa1', name: 'Max', age: 28 },
-  //     { id: 'vasdf1', name: 'Manu', age: 29 },
-  //     { id: 'asdf11', name: 'Stephanie', age: 26 }
-  //   ],
-  //   otherState: 'some other value',
-  //   showPersons: false
-  // }
+  componentDidUpdate() {
+    console.log('[App.js] componentDidUpdate');
+  }
 
-  nameChangedHandler = ( event, id ) => {
-    const personIndex = this.state.persons.findIndex( p => {
+  nameChangedHandler = (event, id) => {
+    const personIndex = this.state.persons.findIndex(p => {
       return p.id === id;
-    } );
+    });
 
     const person = {
       ...this.state.persons[personIndex]
@@ -70,50 +60,57 @@ class App extends PureComponent {
     const persons = [...this.state.persons];
     persons[personIndex] = person;
 
-    this.setState( { persons: persons } );
-  }
+    this.setState({ persons: persons });
+  };
 
-  deletePersonHandler = ( personIndex ) => {
+  deletePersonHandler = personIndex => {
     // const persons = this.state.persons.slice();
     const persons = [...this.state.persons];
-    persons.splice( personIndex, 1 );
-    this.setState( { persons: persons } );
-  }
+    persons.splice(personIndex, 1);
+    this.setState({ persons: persons });
+  };
 
   togglePersonsHandler = () => {
     const doesShow = this.state.showPersons;
-    this.setState( ( prevState, props ) => {
-      return {
-        showPersons: !doesShow,
-        toggleClicked: prevState.toggleClicked + 1
-      }
-    } );
-  }
+    this.setState({ showPersons: !doesShow });
+  };
 
-  render () {
-    console.log( '[App.js] Inside render()' );
+  render() {
+    console.log('[App.js] render');
     let persons = null;
 
-    if ( this.state.showPersons ) {
-      persons = <Persons
-        persons={this.state.persons}
-        clicked={this.deletePersonHandler}
-        changed={this.nameChangedHandler} />;
+    if (this.state.showPersons) {
+      persons = (
+        <Persons
+          persons={this.state.persons}
+          clicked={this.deletePersonHandler}
+          changed={this.nameChangedHandler}
+        />
+      );
     }
 
     return (
-      <Aux>
-        <button onClick={() => { this.setState( { showPersons: true } ) }}>Show Persons</button>
-        <Cockpit
-          appTitle={this.props.title}
-          showPersons={this.state.showPersons}
-          persons={this.state.persons}
-          clicked={this.togglePersonsHandler} />
+      <WithClass classes={classes.App}>
+        <button
+          onClick={() => {
+            this.setState({ showCockpit: false });
+          }}
+        >
+          Remove Cockpit
+        </button>
+        {this.state.showCockpit ? (
+          <Cockpit
+            title={this.props.appTitle}
+            showPersons={this.state.showPersons}
+            personsLength={this.state.persons.length}
+            clicked={this.togglePersonsHandler}
+          />
+        ) : null}
         {persons}
-      </Aux>
+      </WithClass>
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
   }
 }
 
-export default withClass( App, classes.App );
+export default App;
