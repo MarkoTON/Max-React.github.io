@@ -10,7 +10,7 @@ import './Blog.css';
 class Blog extends Component {
     state = {
         posts: [],
-        selectedPostId: null,
+        selectedPostId: 1, // Post one is always selected
         error: false
     }
 
